@@ -1,7 +1,7 @@
 # request public certificate from the amazon certificate manager
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = var.domain_name
-  subject_alternative_names = var.alternative_names
+  subject_alternative_names = [var.alternative_names]
   validation_method         = "DNS"
 
   lifecycle {
@@ -11,7 +11,7 @@ resource "aws_acm_certificate" "acm_certificate" {
 
 # get details about a route 53 hosted zone
 data "aws_route53_zone" "route53_zone" {
-  name         = "trainiumcloud.com"
+  name         = var.domain_name
   private_zone = false 
 }
 
