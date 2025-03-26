@@ -1,8 +1,8 @@
 # request public certificate from the amazon certificate manager
 resource "aws_acm_certificate" "acm_certificate" {
-  domain_name = "trainiumcloud.com"
+  domain_name               = "trainiumcloud.com"
   subject_alternative_names = ["www.trainiumcloud.com", "*.trainiumcloud.com"]
-  validation_method = "DNS"
+  validation_method         = "DNS"
 
   lifecycle {
     create_before_destroy = true
@@ -11,11 +11,11 @@ resource "aws_acm_certificate" "acm_certificate" {
 
 # get details about a route 53 hosted zone
 data "aws_route53_zone" "route53_zone" {
-  name = "trainiumcloud.com"
+  name         = "trainiumcloud.com"
   private_zone = false 
 }
 
-# create a record set in route 53 for domain validatation
+# create a record set in route 53 for domain validation
 resource "aws_route53_record" "route53_record" {
   for_each = {
     for dvo in aws_acm_certificate.acm_certificate.domain_validation_options : dvo.domain_name => {
@@ -26,15 +26,15 @@ resource "aws_route53_record" "route53_record" {
   }
 
   allow_overwrite = true
-  name = each.value.name 
-  records = "each.value.record"
-  ttl = 60
-  type = each.value.type
-  zone_id = data.aws_route53_zone.route53_zone.zone_id
+  name            = each.value.name 
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.route53_zone.zone_id
 }
 
 # validate acm certificate
 resource "aws_acm_certificate_validation" "acm_certificate_validation" {
-  certificate_arn = aws_acm_certificate.acm_certificate.arn
+  certificate_arn         = aws_acm_certificate.acm_certificate.arn
   validation_record_fqdns = [for record in aws_route53_record.route53_record : record.fqdn]
 }
