@@ -3,6 +3,6 @@ variable "domain_name" {
 }
 
 variable "alternative_names" {
-  type    = (string)
+  type    = tuple(string, string)
   default = ["www.trainiumcloud.com", "*.trainiumcloud.com"]
 }
