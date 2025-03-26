@@ -1,7 +1,7 @@
 # request public certificate from the amazon certificate manager
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name = var.domain_name
-  subject_alternative_names = var.alternative_names
+  subject_alternative_names = ["www.trainiumcloud.com", "*.trainiumcloud.com"]
   validation_method = "DNS"
 
   lifecycle {
@@ -27,7 +27,7 @@ resource "aws_route53_record" "route53_record" {
 
   allow_overwrite = true
   name = each.value.name 
-  records = [each.value.record]
+  records = "each.value.record"
   ttl = 60
   type = each.value.type
   zone_id = data.aws_route53_zone.route53_zone.zone_id
