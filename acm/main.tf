@@ -1,7 +1,7 @@
 # request public certificate from the amazon certificate manager
 resource "aws_acm_certificate" "acm_certificate" {
-  domain_name               = "trainiumcloud.com"
-  subject_alternative_names = ["www.trainiumcloud.com", "*.trainiumcloud.com"]
+  domain_name               = var.domain_name
+  subject_alternative_names = var.alternative_names
   validation_method         = "DNS"
 
   lifecycle {
