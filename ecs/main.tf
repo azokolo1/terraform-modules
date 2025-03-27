@@ -88,7 +88,7 @@ resource "aws_ecs_service" "ecs_service" {
 
   # load balancing
   load_balancer {
-    target_group_arn = var.alb_target_group.arn
+    target_group_arn = var.alb_target_group_arn
     container_name = "${var.project_name}-${var.environment}-container"
     container_port = 80
   }
