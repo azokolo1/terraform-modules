@@ -1,0 +1,13 @@
+# ecs variables
+variable "project_name" {}
+variable "environment" {}
+variable "ecs_task_execution_role_arn" {}
+variable "architecture" {}
+variable "container_image" {}
+variable "env_file_bucket_name" {}
+variable "env_file_name" {}
+variable "region" {}
+variable "aws_subnet.private_app_subnet_az1.id" {}
+variable "aws_subnet.private_app_subnet_az1.id" {}
+variable "aws_security_group.app_server_security_group.id" {}
+variable "alb_target_group.arn" {}
