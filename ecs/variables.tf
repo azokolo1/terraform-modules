@@ -7,7 +7,7 @@ variable "container_image" {}
 variable "env_file_bucket_name" {}
 variable "env_file_name" {}
 variable "region" {}
-variable "aws_subnet.private_app_subnet_az1.id" {}
-variable "aws_subnet.private_app_subnet_az1.id" {}
-variable "aws_security_group.app_server_security_group.id" {}
+variable "private_app_subnet_az1_id" {}
+variable "private_app_subnet_az2_id" {}
+variable "app_server_security_group_id" {}
 variable "alb_target_group.arn" {}
