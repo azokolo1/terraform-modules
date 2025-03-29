@@ -1,6 +1,6 @@
 # export the alb target group arn
 output "target_group_arn" {
-  value = aws_lb_target_group.alb_target_group.arn
+  value = aws_lb_target_group.target_group.arn
 }
 
 # export the application load balancer dns name
