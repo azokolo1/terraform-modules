@@ -12,7 +12,7 @@ resource "aws_lb" "application_load_balancer" {
 }
 
 # create target group
-resource "aws_lb_target_group" "alb_target_group" {
+resource "aws_lb_target_group" "target_group" {
   name = "${var.project_name}-${var.environment}-tg"
   target_type = var.target_type
   port = 80
