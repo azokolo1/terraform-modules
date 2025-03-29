@@ -1,0 +1,4 @@
+# route53 variables
+variable "domain_name" {}
+variable "application_load_balancer_dns_name" {}
+variable "application_load_balancer_zone_id" {}
